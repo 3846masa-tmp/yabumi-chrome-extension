@@ -17,7 +17,7 @@ Yabumi Extension allows you to capture and send image links faster than anything
 
 With Yabumi Extension you can instantly clip images from any website.
 
-To use the extension, just right click on the image you want and then click "Yabumi It" and the image will automatically be uploaded to Yabumi.com with a unique URL. This link is automatically copied to your clipboard so it can be pasted instantly. When you want to go back you can visit the history page to see past images you have collected.
+To use the extension, just right click on the image you want and then click "Yabumi It" and the image will automatically be uploaded to Yabumi.cc with a unique URL. This link is automatically copied to your clipboard so it can be pasted instantly. When you want to go back you can visit the history page to see past images you have collected.
 Whenever you capture an image the original address and title of the page the image came from are saved as a comment. This allows you to see just where your favorite images came from, and perhaps go back to find even more.
 
 
