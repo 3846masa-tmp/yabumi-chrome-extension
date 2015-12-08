@@ -6,7 +6,7 @@ Chrome Extension for Yabumi.
 
 ## Install
 
-- CTX File.
+- [CTX File](https://github.com/3846masa/yabumi-chrome-extension/releases/download/v2.0.11-yabumi/yabumi-chrome-extension.crx).
 
 
 ## About
