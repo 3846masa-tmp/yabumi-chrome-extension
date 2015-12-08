@@ -3,7 +3,7 @@
     "message": "完了!"
   },
   "uploadingFinishMessage": {
-    "message": "Gyazoのリンクがコピーされました"
+    "message": "Yabumiのリンクがコピーされました"
   },
   "captureTitle": {
     "message": "キャプチャー中..."
@@ -30,6 +30,6 @@
     "message": "この拡張を使うためには一度タブをリロードする必要があります。今すぐリロードしますか？"
   },
   "welcomeMessage": {
-    "message": "ようこそ。キャプチャしたいウェブサイトを新しいタブで開いて、Gyazoボタンを押してみてください。"
+    "message": "ようこそ。キャプチャしたいウェブサイトを新しいタブで開いて、Yabumiボタンを押してみてください。"
   }
 }

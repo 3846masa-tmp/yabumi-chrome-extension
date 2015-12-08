@@ -22,10 +22,10 @@ var ref = exec('git show-ref refs/heads/`git rev-parse --abbrev-ref HEAD`').toSt
 console.log(`upload with ${ref}`)
 request({
   method: 'POST',
-  uri: 'https://api.github.com/repos/gyazo/gyazo-chrome-extension/deployments',
+  uri: 'https://api.github.com/repos/yabumi/yabumi-chrome-extension/deployments',
   headers: {
     'Authorization': 'token ' + token,
-    'User-Agent': 'gyazo/gyazo-chrome-extension'
+    'User-Agent': 'yabumi/yabumi-chrome-extension'
   },
   body: {
     ref: ref,
@@ -38,7 +38,7 @@ request({
   resolveWithFullResponse: true
 }).then(function(res) {
   var err = false
-  var path = `gyazo-extension/${Date.now()}/`
+  var path = `yabumi-extension/${Date.now()}/`
   var crxUploadUrl = `http://storage.googleapis.com/${path}chrome.crx`
   if (res.statusCode < 400) {
     try {
@@ -52,8 +52,8 @@ request({
   if (err) {
     request({
       method: 'POST',
-      headers: {'Authorization': 'token ' + token, 'User-Agent': 'gyazo/gyazo-chrome-extension'},
-      uri: 'https://api.github.com/repos/gyazo/gyazo-chrome-extension/deployments/' + res.body.id + '/statuses',
+      headers: {'Authorization': 'token ' + token, 'User-Agent': 'yabumi/yabumi-chrome-extension'},
+      uri: 'https://api.github.com/repos/yabumi/yabumi-chrome-extension/deployments/' + res.body.id + '/statuses',
       body: {state: 'error'},
       json: true
     }).then(function() {
@@ -65,9 +65,9 @@ request({
     method: 'POST',
     headers: {
       'Authorization': 'token ' + token,
-      'User-Agent': 'gyazo/gyazo-chrome-extension'
+      'User-Agent': 'yabumi/yabumi-chrome-extension'
     },
-    uri: 'https://api.github.com/repos/gyazo/gyazo-chrome-extension/deployments/' + res.body.id + '/statuses',
+    uri: 'https://api.github.com/repos/yabumi/yabumi-chrome-extension/deployments/' + res.body.id + '/statuses',
     body: {
       state: 'success',
       target_url: crxUploadUrl

@@ -10,7 +10,7 @@
     chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
       chrome.runtime.sendMessage(chrome.runtime.id, {
         tab: tabs[0],
-        action: 'gyazoCapture'
+        action: 'yabumiCapture'
       }, function (mes) {})
       window.close()
     })
@@ -19,7 +19,7 @@
     chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
       chrome.runtime.sendMessage(chrome.runtime.id, {
         tab: tabs[0],
-        action: 'gyazoWholeCaptureFromPopup'
+        action: 'yabumiWholeCaptureFromPopup'
       }, function () {})
       window.close()
     })
@@ -28,7 +28,7 @@
     chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
       chrome.runtime.sendMessage(chrome.runtime.id, {
         tab: tabs[0],
-        action: 'gyazoSelectElmFromPopup'
+        action: 'yabumiSelectElmFromPopup'
       }, function () {})
       window.close()
     })

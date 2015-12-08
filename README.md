@@ -1,21 +1,21 @@
-Gyazo Extension
+Yabumi Extension
 =======
 
-Chrome Extension for Gyazo.
+Chrome Extension for Yabumi.
+(edited [Gyazo Extension](https://github.com/gyazo/gyazo-chrome-extension))
 
 ## Install
 
-- You can install from Chrome Web Store
-  - https://chrome.google.com/webstore/detail/gyazo/ffdaeeijbbijklfcpahbghahojgfgebo
+- CTX File.
 
 
 ## About
 
-Gyazo Extension allows you to capture and send image links faster than anything else.
+Yabumi Extension allows you to capture and send image links faster than anything else.
 
-With Gyazo Extension you can instantly clip images from any website.
+With Yabumi Extension you can instantly clip images from any website.
 
-To use the extension, just right click on the image you want and then click "Gyazo It" and the image will automatically be uploaded to Gyazo.com with a unique URL. This link is automatically copied to your clipboard so it can be pasted instantly. When you want to go back you can visit the history page to see past images you have collected.
+To use the extension, just right click on the image you want and then click "Yabumi It" and the image will automatically be uploaded to Yabumi.com with a unique URL. This link is automatically copied to your clipboard so it can be pasted instantly. When you want to go back you can visit the history page to see past images you have collected.
 Whenever you capture an image the original address and title of the page the image came from are saved as a comment. This allows you to see just where your favorite images came from, and perhaps go back to find even more.
 
 

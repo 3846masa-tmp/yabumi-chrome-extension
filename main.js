@@ -1,5 +1,5 @@
 'use strict'
-var host = 'https://upload.gyazo.com/api/upload/easy_auth'
+var host = 'https://yabumi.cc/api/images.json'
 var clientId = 'df9edab530e84b4c56f9fcfa209aff1131c7d358a91d85cc20b9229e515d67dd'
 const DELAY_TIMES = [0, 200, 400, 700, 1000]
 let waitForDelay = function (callback) {
@@ -17,11 +17,12 @@ var UploadNotification = function (tabId, callback) {
     option.action = 'notification'
     chrome.tabs.sendMessage(tabId, option, callback)
   }
-  this.finish = function (imagePageUrl, imageDataUrl, callback) {
+  this.finish = function (imagePageUrl, imageStoreUrl, imageDataUrl, callback) {
     this.update({
       title: chrome.i18n.getMessage('uploadingFinishTitle'),
       message: chrome.i18n.getMessage('uploadingFinishMessage'),
       imagePageUrl: imagePageUrl,
+      imageStoreUrl: imageStoreUrl,
       imageUrl: imageDataUrl,
       isFinish: true
     }, callback)
@@ -31,45 +32,41 @@ var UploadNotification = function (tabId, callback) {
   }, callback)
 }
 
-function postToGyazo (tabId, data) {
+function postToYabumi (tabId, data) {
   var notification = new UploadNotification(tabId)
+  blobUtil.dataURLToBlob(data.imageData).then((blob) => {
+
+  console.log(blob);
+  let form = new FormData();
+  form.append('name', data.title);
+  form.append('imagedata', blob);
+  form.append('expiresAt', 'null');
   $.ajax({
     type: 'POST',
     url: host,
-    data: {
-      client_id: clientId,
-      image_url: data.imageData,
-      title: data.title,
-      referer_url: data.url,
-      scale: data.scale || '',
-      desc: data.desc ? data.desc.replace(/\t/, ' ').replace(/(^\s+| +$)/gm, '') : ''
-    },
+    data: form,
+    processData: false,
+    contentType: false,
     crossDomain: true
   })
     .done(function (_data) {
-      // Use pure XHR for get XHR.responseURL
-      let xhr = new window.XMLHttpRequest()
-      xhr.open('GET', _data.get_image_url)
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          saveToClipboard(xhr.responseURL)
-          notification.finish(xhr.responseURL, data.imageData)
-        }
-      }
-      xhr.send()
+      saveToClipboard(_data.url)
+      notification.finish(_data.url, _data.editUrl, data.imageData)
     })
     .fail(function (XMLHttpRequest, textStatus, errorThrown) {
       window.alert('Status: ' + XMLHttpRequest.status + '\n Error: ' + textStatus + '\n Message: ' + errorThrown.message)
     })
+
+  });
 }
 
 function onClickHandler (info, tab) {
   chrome.tabs.insertCSS(tab.id, {
     file: './libs/menu.css'
   })
-  var GyazoFuncs = {gyazoIt: function () {
+  var YabumiFuncs = {yabumiIt: function () {
     if (info.srcUrl.match(/^data:/)) {
-      postToGyazo(tab.id, {
+      postToYabumi(tab.id, {
         imageData: info.srcUrl,
         title: tab.title,
         url: tab.url
@@ -83,7 +80,7 @@ function onClickHandler (info, tab) {
           var blob = xhr.response
           var fileReader = new FileReader()
           fileReader.onload = function (e) {
-            postToGyazo(tab.id, {
+            postToYabumi(tab.id, {
               imageData: fileReader.result,
               title: tab.title,
               url: tab.url
@@ -97,18 +94,18 @@ function onClickHandler (info, tab) {
   }
 }
 
-  if (info.menuItemId in GyazoFuncs) {
-    GyazoFuncs[info.menuItemId]()
+  if (info.menuItemId in YabumiFuncs) {
+    YabumiFuncs[info.menuItemId]()
   }
 }
 
 function disableButton (tabId) {
-  chrome.browserAction.setIcon({path: '/icons/gyazo-38-gray.png'})
+  chrome.browserAction.setIcon({path: '/icons/yabumi-38-gray.png'})
   chrome.browserAction.disable(tabId)
 }
 
 function enableButton (tabId) {
-  chrome.browserAction.setIcon({path: '/icons/gyazo-38.png'})
+  chrome.browserAction.setIcon({path: '/icons/yabumi-38.png'})
   chrome.browserAction.enable(tabId)
 }
 
@@ -146,7 +143,7 @@ chrome.contextMenus.onClicked.addListener(onClickHandler)
 
 chrome.contextMenus.create({
   title: chrome.i18n.getMessage('contextMenuImage'),
-  id: 'gyazoIt',
+  id: 'yabumiIt',
   contexts: ['image']
 })
 
@@ -159,7 +156,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
     file: './libs/menu.css'
   }, function () {
     if (chrome.runtime.lastError && chrome.runtime.lastError.message.match(/cannot be scripted/)) {
-      window.alert('It is not allowed to use Gyazo extension in this page.')
+      window.alert('It is not allowed to use Yabumi extension in this page.')
       return disableButton(tab.id)
     }
     chrome.tabs.sendMessage(tab.id, {action: 'insertMenu', tab: tab}, function () {
@@ -172,14 +169,14 @@ chrome.browserAction.onClicked.addListener(function (tab) {
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   var messageHandlers = {
-    gyazoSendRawImage: function () {
+    yabumiSendRawImage: function () {
       let data = request.data
       onClickHandler({
-        menuItemId: 'gyazoIt',
+        menuItemId: 'yabumiIt',
         srcUrl: data.srcUrl
       }, request.tab)
     },
-    gyazoCaptureWithSize: function () {
+    yabumiCaptureWithSize: function () {
       var c = document.createElement('canvas')
       c.height = request.data.h
       c.width = request.data.w * request.data.z * request.data.s
@@ -227,7 +224,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
           chrome.tabs.executeScript(request.tab.id, {
             code: 'window.scrollTo(' + request.data.positionX + ', ' + request.data.positionY + ' )'
           })
-          postToGyazo(request.tab.id, {
+          postToYabumi(request.tab.id, {
             imageData: canvasData,
             title: request.data.t,
             url: request.data.u,

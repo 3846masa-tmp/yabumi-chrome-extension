@@ -1,7 +1,7 @@
-body.gyazo-select-element-mode *:not(.gyazo-crop-select-element):not(.gyazo-menu-element) {
+body.yabumi-select-element-mode *:not(.yabumi-crop-select-element):not(.yabumi-menu-element) {
   cursor: default !important;
 }
-.gyazo-menu {
+.yabumi-menu {
   box-sizing: border-box;
   position: fixed;
   right: 0;
@@ -31,26 +31,26 @@ body.gyazo-select-element-mode *:not(.gyazo-crop-select-element):not(.gyazo-menu
   }
 }
 
-.gyazo-menu.gyazo-notification {
+.yabumi-menu.yabumi-notification {
   text-align: center;
 }
-.gyazo-notification > .gyazo-notification-title {
+.yabumi-notification > .yabumi-notification-title {
   margin: 15px 0 0px;
   font-size: 20px;
 }
-.gyazo-notification > .gyazo-notification-message {
+.yabumi-notification > .yabumi-notification-message {
   font-size: 12px;
   margin: 0 0 15px;
 }
-.gyazo-notification .image {
+.yabumi-notification .image {
   max-width: 200px;
   margin-bottom: 20px;
 }
-.gyazo-menu > .gyazo-close-button {
+.yabumi-menu > .yabumi-close-button {
   width: 20px;
   float: right;
 }
-.gyazo-menu > .gyazo-button {
+.yabumi-menu > .yabumi-button {
   box-sizing: border-box;
   text-align: center;
   margin: 0;
@@ -61,23 +61,23 @@ body.gyazo-select-element-mode *:not(.gyazo-crop-select-element):not(.gyazo-menu
   font-size: 12px;
   cursor: pointer;
 }
-.gyazo-menu > .gyazo-button.gyazo-button-active {
+.yabumi-menu > .yabumi-button.yabumi-button-active {
   color: rgb(9, 132, 222);
 }
-.gyazo-menu > .gyazo-button.gyazo-button-active:hover {
+.yabumi-menu > .yabumi-button.yabumi-button-active:hover {
   color: rgb(9, 132, 222);
 }
-.gyazo-menu > .gyazo-button:hover {
+.yabumi-menu > .yabumi-button:hover {
   border-bottom: 5px solid #cccccc;
   color: #000;
 }
-.gyazo-menu > .gyazo-button > .gyazo-button-icon {
+.yabumi-menu > .yabumi-button > .yabumi-button-icon {
   box-sizing: border-box;
   font-size: 20px;
   margin: 8px 0 3px;
   pointer-events: none;
 }
-.gyazo-menu > .gyazo-button > .gyazo-button-text {
+.yabumi-menu > .yabumi-button > .yabumi-button-text {
   box-sizing: border-box;
   font-size: 12px;
   line-height: 18px;
@@ -86,7 +86,7 @@ body.gyazo-select-element-mode *:not(.gyazo-crop-select-element):not(.gyazo-menu
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.gyazo-menu > .gyazo-close-button {
+.yabumi-menu > .yabumi-close-button {
   box-sizing: border-box;
   text-align: left;
   margin: 0;
@@ -99,17 +99,17 @@ body.gyazo-select-element-mode *:not(.gyazo-crop-select-element):not(.gyazo-menu
   cursor: pointer;
   padding-top: 6px;
 }
-.gyazo-menu > .gyazo-close-button:hover {
+.yabumi-menu > .yabumi-close-button:hover {
   color: #000;
 }
 
-.gyazo-menu > .gyazo-spin {
-  animation: gyazo-spin 2s infinite linear;
+.yabumi-menu > .yabumi-spin {
+  animation: yabumi-spin 2s infinite linear;
   font-size: 24px;
   line-height: 53px;
 }
 
-@keyframes gyazo-spin {
+@keyframes yabumi-spin {
   0% {
     transform:rotate(0deg);
   }
@@ -120,7 +120,7 @@ body.gyazo-select-element-mode *:not(.gyazo-crop-select-element):not(.gyazo-menu
 
 /* Icons */
 @font-face {
-  font-family: 'gyazo-icomoon';
+  font-family: 'yabumi-icomoon';
   src:url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.eot?-jmg6j');
   src:url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.eot?#iefix-jmg6j') format('embedded-opentype'),
     url('chrome-extension://__MSG_@@extension_id__/fonts/icomoon.woff2?-jmg6j') format('woff2'),
@@ -131,8 +131,8 @@ body.gyazo-select-element-mode *:not(.gyazo-crop-select-element):not(.gyazo-menu
   font-style: normal;
 }
 
-[class^="gyazo-icon-"], [class*=" gyazo-icon-"] {
-  font-family: 'gyazo-icomoon';
+[class^="yabumi-icon-"], [class*=" yabumi-icon-"] {
+  font-family: 'yabumi-icomoon';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -145,21 +145,21 @@ body.gyazo-select-element-mode *:not(.gyazo-crop-select-element):not(.gyazo-menu
   -moz-osx-font-smoothing: grayscale;
 }
 
-.gyazo-icon-cross:before {
+.yabumi-icon-cross:before {
   content: "\e117";
 }
-.gyazo-icon-spinner3:before {
+.yabumi-icon-spinner3:before {
   content: "\e604";
 }
-.gyazo-icon-window-scroll:before {
+.yabumi-icon-window-scroll:before {
   content: "\e600";
 }
-.gyazo-icon-crop:before {
+.yabumi-icon-crop:before {
   content: "\e601";
 }
-.gyazo-icon-window:before {
+.yabumi-icon-window:before {
   content: "\e602";
 }
-.gyazo-icon-selection:before {
+.yabumi-icon-selection:before {
   content: "\e603";
 }
