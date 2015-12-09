@@ -6,6 +6,7 @@ Chrome Extension for Yabumi.
 
 ## Install
 
+- [Chrome Web Store](https://chrome.google.com/webstore/detail/yabumi/mobjliepebbcffebjgibfmahgedkkddg?hl=ja&gl=JP)
 - [CRX File](https://github.com/3846masa/yabumi-chrome-extension/releases/download/v2.0.11-yabumi/yabumi-chrome-extension.crx).
   - Download by right-clicking.
   - Open ``chrome://extensions`` and drag&drop crx file.
